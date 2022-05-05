@@ -3,7 +3,7 @@
 
 class hand {
 public:
-  hand(card& _0, card& _1, card& _2, card& _3, card& _4)
+  hand(card _0, card _1, card _2, card _3, card _4)
   {
     _top_five[0] = _0;
     _top_five[1] = _1;
@@ -14,6 +14,44 @@ public:
 
   hand(card cards[7])
   {
+    // demo here: http://jsfiddle.net/subskybox/r4mSF/
+    bool has_next_combination = true;
+    short best_hand_rank = 0;
+    card best_five[5];
+    short combination_index[5] = {0, 1, 2, 3, 4};
+    int k = 5, n = 7;
+    int i = 4; // start by increasing last index untill we reach the maximum
+    int combi = 0;
+    while (has_next_combination)
+    {
+      _top_five[0] = cards[combination_index[0]];
+      _top_five[1] = cards[combination_index[1]];
+      _top_five[2] = cards[combination_index[2]];
+      _top_five[3] = cards[combination_index[3]];
+      _top_five[4] = cards[combination_index[4]];
+      std::cout << "combi " << ++combi << ": " << *this << std::endl;
+      for (int j = 0 ; j < 5 ; ++ j) std::cout << combination_index[j]; std::cout << std::endl;
+      short current_hand_index = rank_hand();
+      if (ranks[current_hand_index] > best_hand_rank)
+      {
+        best_hand_rank = ranks[current_hand_index];
+        std::copy(_top_five, _top_five+5, best_five);
+      }
+      // generate next combination in order: 01234, 01235, 01236, 01245, etc
+      ++ combination_index[i];
+      // max combinatio is 23456 so combination_index[i] should be less than or equal to: 2 + i
+      while (i > 0 && combination_index[i] > 2 + i)
+      {
+        -- i; ++combination_index[i];
+      }
+      if (combination_index[0] > 2) has_next_combination = false;
+      // increase remaining of the combination after reaching the end of the previous
+      for (i = i + 1; i < k; ++ i)
+      {
+        combination_index[i] = combination_index[i-1] + 1;
+      }
+    }
+    std::copy(best_five, best_five+5, _top_five);
   }
 
   short rank_hand()

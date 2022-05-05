@@ -10,15 +10,13 @@ int main(int argc, char** argv)
   game g(8);
   g.run();
 
-  const card five[5] = {
-    {0, 10},
-    {0, 11},
-    {0, 12},
-    {0, 13},
-    {0, 14}
-  };
-
-  hand h(five);
+  hand h(
+    card(0, 10),
+    card(0, 11),
+    card(0, 12),
+    card(0, 13),
+    card(0, 14)
+  );
   std::cout << h << std::endl;
   h.rank_hand();
   return 0;
