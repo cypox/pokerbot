@@ -29,8 +29,8 @@ public:
       _top_five[2] = cards[combination_index[2]];
       _top_five[3] = cards[combination_index[3]];
       _top_five[4] = cards[combination_index[4]];
-      std::cout << "combi " << ++combi << ": " << *this << std::endl;
-      for (int j = 0 ; j < 5 ; ++ j) std::cout << combination_index[j]; std::cout << std::endl;
+      //std::cout << "combi " << ++combi << ": " << *this << std::endl;
+      //for (int j = 0 ; j < 5 ; ++ j) std::cout << combination_index[j]; std::cout << std::endl;
       short current_hand_index = rank_hand();
       if (ranks[current_hand_index] > best_hand_rank)
       {
@@ -38,6 +38,8 @@ public:
         std::copy(_top_five, _top_five+5, best_five);
       }
       // generate next combination in order: 01234, 01235, 01236, 01245, etc
+      // by incrementing the digits from right to left
+      i = 4;
       ++ combination_index[i];
       // max combinatio is 23456 so combination_index[i] should be less than or equal to: 2 + i
       while (i > 0 && combination_index[i] > 2 + i)
@@ -46,15 +48,15 @@ public:
       }
       if (combination_index[0] > 2) has_next_combination = false;
       // increase remaining of the combination after reaching the end of the previous
-      for (i = i + 1; i < k; ++ i)
+      for (int j = i + 1; j < k; ++ j)
       {
-        combination_index[i] = combination_index[i-1] + 1;
+        combination_index[j] = combination_index[j-1] + 1;
       }
     }
     std::copy(best_five, best_five+5, _top_five);
   }
 
-  short rank_hand()
+  short rank_hand() const
   {
     // full explanation is here:
     // https://www.codeproject.com/Articles/569271/A-Poker-hand-analyzer-in-JavaScript-using-bit-math
@@ -98,7 +100,7 @@ public:
 
   bool operator>(const hand& rhs)
   {
-    return false;
+    return ranks[rank_hand()] > ranks[rhs.rank_hand()];
   }
 
   friend std::ostream& operator<<(std::ostream& s, const hand& h)
