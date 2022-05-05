@@ -24,19 +24,19 @@ enum suit {
 };
 
 enum face {
-  _2 = 0,
-  _3 = 1,
-  _4 = 2,
-  _5 = 3,
-  _6 = 4,
-  _7 = 5,
-  _8 = 6,
-  _9 = 7,
-  _10 = 8,
-  _J = 9,
-  _Q = 10,
-  _K = 11,
-  _A = 12
+  _2 = 2,
+  _3 = 3,
+  _4 = 4,
+  _5 = 5,
+  _6 = 6,
+  _7 = 7,
+  _8 = 8,
+  _9 = 9,
+  _T = 10,
+  _J = 11,
+  _Q = 12,
+  _K = 13,
+  _A = 14
 };
 
 // use struct and bit-fields to reduce card size
@@ -58,19 +58,19 @@ public:
   {
     switch(c._face)
     {
-      case 0: s << "2"; break;
-      case 1: s << "3"; break;
-      case 2: s << "4"; break;
-      case 3: s << "5"; break;
-      case 4: s << "6"; break;
-      case 5: s << "7"; break;
-      case 6: s << "8"; break;
-      case 7: s << "9"; break;
-      case 8: s << "T"; break;
-      case 9: s << "J"; break;
-      case 10: s << "Q"; break;
-      case 11: s << "K"; break;
-      case 12: s << "A"; break;
+      case _2: s << "2"; break;
+      case _3: s << "3"; break;
+      case _4: s << "4"; break;
+      case _5: s << "5"; break;
+      case _6: s << "6"; break;
+      case _7: s << "7"; break;
+      case _8: s << "8"; break;
+      case _9: s << "9"; break;
+      case _T: s << "T"; break;
+      case _J: s << "J"; break;
+      case _Q: s << "Q"; break;
+      case _K: s << "K"; break;
+      case _A: s << "A"; break;
       default: s << "Unknown"; break;
     }
 

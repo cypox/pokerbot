@@ -18,7 +18,7 @@ public:
     _d.clear();
     for (int s = 0 ; s < 4 ; ++ s)
     {
-      for (int f = 0 ; f < 13 ; ++ f)
+      for (int f = 2 ; f <= 14 ; ++ f)
       {
         _d.emplace_back(s, f);
       }
