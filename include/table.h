@@ -27,8 +27,9 @@ public:
     hand best(cards);
     for (int i = 1 ; i < _n ; ++ i)
     {
-      cards[5] = _players[i][0];
-      cards[6] = _players[i][1];
+      //cards[5] = _players[i][0];
+      //cards[6] = _players[i][1];
+      card cards[7] = {flop1, flop2, flop3, turn, river, _players[i][0], _players[i][1]};
       hand current(cards);
       if (current > best) best_player = i;
     }
