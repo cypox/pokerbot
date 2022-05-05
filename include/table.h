@@ -37,6 +37,16 @@ public:
     _river = river;
   }
 
+  void show_common()
+  {
+    std::cout << "[" << _flop[0] << ", "
+              << _flop[1] << ", "
+              << _flop[2] << ", "
+              << _turn << ", "
+              << _river << "]"
+              << std::endl;
+  }
+
   int get_winner()
   {
     int best_player = 0;
