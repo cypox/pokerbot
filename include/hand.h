@@ -8,6 +8,7 @@ public:
   hand(card cards[7])
   {
     // use bitfields from https://www.codeproject.com/Articles/569271/A-Poker-hand-analyzer-in-JavaScript-using-bit-math
+    // demo here: http://jsfiddle.net/subskybox/r4mSF/
     bool is_flush = false;
 
     short count[4] = {0, 0, 0, 0};
