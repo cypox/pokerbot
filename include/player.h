@@ -14,7 +14,7 @@ public:
   void set_cards(card& first, card& second)
   {
     _cards = {first, second};
-    std::cout << "player is dealt:\n" << first << "\n" << second << "\n";
+    std::cout << "hand: [" << first << ", " << second << "]\n";
   }
 
 private:
