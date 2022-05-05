@@ -8,7 +8,10 @@ int main(int argc, char** argv)
 {
   std::srand(std::time(0));
   game g(8);
-  g.run();
+  g.simulate_hand(
+    card(SPADES, _A),
+    card(SPADES, _K)
+  );
 
   hand h(
     card(0, 10),

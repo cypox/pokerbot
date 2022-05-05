@@ -37,6 +37,18 @@ public:
     return c;
   }
 
+  void burn()
+  {
+    _d.pop_back();
+  }
+
+  void discard(card& c)
+  {
+    int i = -1;
+    while (_d[++i] != c);
+    _d.erase(_d.begin()+ i);
+  }
+
 private:
   std::vector<card> _d;
 };

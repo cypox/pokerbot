@@ -16,14 +16,14 @@
   #define DIAMOND "\xE2\x99\xA6"
 #endif
 
-enum suit {
+enum suit_t {
   SPADES = 0,
   HEARTS = 1,
   CLUBS = 2,
   DIAMONDS = 3
 };
 
-enum face {
+enum face_t {
   _2 = 2,
   _3 = 3,
   _4 = 4,
@@ -48,10 +48,13 @@ public:
     _face = _A;
   }
 
-  card(char s, char f)
+  card(face_t f, suit_t s) : _face(f), _suit(s) {}
+
+  card(char f, char s) : _face((face_t)f), _suit((suit_t)s) {}
+
+  bool operator!=(const card& other)
   {
-    _suit = (suit)s;
-    _face = (face)f;
+    return other._face != _face || other._suit != _suit;
   }
 
   friend std::ostream& operator<<(std::ostream& s, const card& c)
@@ -86,6 +89,6 @@ public:
   }
 
 //private:
-  suit _suit;
-  face _face;
+  suit_t _suit;
+  face_t _face;
 };

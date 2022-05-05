@@ -18,14 +18,34 @@ public:
       _t.deal_player(i, _d.draw(), _d.draw());
     }
 
-    // TODO: move flop, turn and river cards to table class
     _t.deal_flop(_d.draw(), _d.draw(), _d.draw());
     _t.deal_turn(_d.draw());
     _t.deal_river(_d.draw());
 
-    _t.show_common();
+    //_t.show_common();
 
     return _t.get_winner();
+  }
+
+  bool simulate_hand(card first, card second)
+  {
+    _d.init();
+    _d.shuffle();
+    _d.discard(first);
+    _d.discard(second);
+    _t.deal_player(0, first, second);
+    for (int i = 1 ; i < _n ; ++ i)
+    {
+      _t.deal_player(i, _d.draw(), _d.draw());
+    }
+
+    _t.deal_flop(_d.draw(), _d.draw(), _d.draw());
+    _t.deal_turn(_d.draw());
+    _t.deal_river(_d.draw());
+
+    //_t.show_common();
+
+    return !_t.get_winner();
   }
 
 private:
