@@ -39,6 +39,7 @@ enum face {
   _K = 13
 };
 
+// use struct and bit-fields to reduce card size
 class card {
 public:
   card()

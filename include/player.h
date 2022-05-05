@@ -2,6 +2,7 @@
 
 #include <tuple>
 
+#include "hand.h"
 #include "card.h"
 
 
@@ -14,7 +15,16 @@ public:
   void set_cards(card& first, card& second)
   {
     _cards = {first, second};
-    std::cout << "hand: [" << first << ", " << second << "]\n";
+  }
+
+  void render()
+  {
+    std::cout << "hand: [" << _cards.first << ", " << _cards.second << "]\n";
+  }
+
+  card& operator[](int idx)
+  {
+    return idx ? _cards.second : _cards.first;
   }
 
 private:
