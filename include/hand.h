@@ -103,6 +103,12 @@ public:
     return ranks[rank_hand()] > ranks[rhs.rank_hand()];
   }
 
+  hand operator=(const hand &other)
+  {
+    for (int i = 0 ; i < 5 ; ++ i) _top_five[i] = other._top_five[i];
+    return *this;
+  }
+
   friend std::ostream& operator<<(std::ostream& s, const hand& h)
   {
     s << "["

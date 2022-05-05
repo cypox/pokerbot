@@ -54,12 +54,17 @@ public:
     hand best(cards);
     for (int i = 1 ; i < _n ; ++ i)
     {
-      //cards[5] = _players[i][0];
-      //cards[6] = _players[i][1];
-      card cards[7] = {_flop[0], _flop[1], _flop[2], _turn, _river, _players[i][0], _players[i][1]};
+      cards[5] = _players[i][0];
+      cards[6] = _players[i][1];
       hand current(cards);
-      if (current > best) best_player = i;
+      if (current > best)
+      {
+        best_player = i;
+        best = current;
+      }
     }
+    _players[best_player].render();
+    std::cout << best << std::endl;
     return best_player;
   }
 
