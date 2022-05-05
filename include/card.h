@@ -17,26 +17,26 @@
 #endif
 
 enum suit {
-  SPADES = 1,
-  HEARTS = 2,
-  CLUBS = 3,
-  DIAMONDS = 4
+  SPADES = 0,
+  HEARTS = 1,
+  CLUBS = 2,
+  DIAMONDS = 3
 };
 
 enum face {
-  _A = 1,
-  _2 = 2,
-  _3 = 3,
-  _4 = 4,
-  _5 = 5,
-  _6 = 6,
-  _7 = 7,
-  _8 = 8,
-  _9 = 9,
-  _10 = 10,
-  _J = 11,
-  _Q = 12,
-  _K = 13
+  _2 = 0,
+  _3 = 1,
+  _4 = 2,
+  _5 = 3,
+  _6 = 4,
+  _7 = 5,
+  _8 = 6,
+  _9 = 7,
+  _10 = 8,
+  _J = 9,
+  _Q = 10,
+  _K = 11,
+  _A = 12
 };
 
 // use struct and bit-fields to reduce card size
@@ -58,19 +58,19 @@ public:
   {
     switch(c._face)
     {
-      case 1: s << "A"; break;
-      case 2: s << "2"; break;
-      case 3: s << "3"; break;
-      case 4: s << "4"; break;
-      case 5: s << "5"; break;
-      case 6: s << "6"; break;
-      case 7: s << "7"; break;
-      case 8: s << "8"; break;
-      case 9: s << "9"; break;
-      case 10: s << "T"; break;
-      case 11: s << "J"; break;
-      case 12: s << "Q"; break;
-      case 13: s << "K"; break;
+      case 0: s << "2"; break;
+      case 1: s << "3"; break;
+      case 2: s << "4"; break;
+      case 3: s << "5"; break;
+      case 4: s << "6"; break;
+      case 5: s << "7"; break;
+      case 6: s << "8"; break;
+      case 7: s << "9"; break;
+      case 8: s << "T"; break;
+      case 9: s << "J"; break;
+      case 10: s << "Q"; break;
+      case 11: s << "K"; break;
+      case 12: s << "A"; break;
       default: s << "Unknown"; break;
     }
 
@@ -85,7 +85,7 @@ public:
     return s;
   }
 
-private:
+//private:
   suit _suit;
   face _face;
 };
