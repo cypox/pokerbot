@@ -19,11 +19,11 @@ public:
     }
 
     // TODO: move flop, turn and river cards to table class
-    card flop[3] = {_d.draw(), _d.draw(), _d.draw()};
-    card turn = _d.draw();
-    card river = _d.draw();
+    _t.deal_flop(_d.draw(), _d.draw(), _d.draw());
+    _t.deal_turn(_d.draw());
+    _t.deal_river(_d.draw());
 
-    return _t.get_winner(flop[0], flop[1], flop[2], turn, river);
+    return _t.get_winner();
   }
 
 private:

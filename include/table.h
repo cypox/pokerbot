@@ -20,16 +20,33 @@ public:
     _players[idx].render();
   }
 
-  int get_winner(card& flop1, card& flop2, card& flop3, card& turn, card& river)
+  void deal_flop(card first, card second, card third)
+  {
+    _flop[0] = first;
+    _flop[1] = second;
+    _flop[2] = third;
+  }
+
+  void deal_turn(card turn)
+  {
+    _turn = turn;
+  }
+
+  void deal_river(card river)
+  {
+    _river = river;
+  }
+
+  int get_winner()
   {
     int best_player = 0;
-    card cards[7] = {flop1, flop2, flop3, turn, river, _players[0][0], _players[0][1]};
+    card cards[7] = {_flop[0], _flop[1], _flop[2], _turn, _river, _players[0][0], _players[0][1]};
     hand best(cards);
     for (int i = 1 ; i < _n ; ++ i)
     {
       //cards[5] = _players[i][0];
       //cards[6] = _players[i][1];
-      card cards[7] = {flop1, flop2, flop3, turn, river, _players[i][0], _players[i][1]};
+      card cards[7] = {_flop[0], _flop[1], _flop[2], _turn, _river, _players[i][0], _players[i][1]};
       hand current(cards);
       if (current > best) best_player = i;
     }
@@ -39,4 +56,7 @@ public:
 private:
   int _n;
   std::vector<player> _players;
+  card _flop[3];
+  card _turn;
+  card _river;
 };
