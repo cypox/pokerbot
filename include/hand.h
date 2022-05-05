@@ -20,6 +20,7 @@ public:
     });
     for (int i = 0 ; i < 7 ; ++ i) std::cout << cards[i] << " "; std::cout << std::endl;
 
+    if (is_flush) std::cout << "THERE IS A FLUSH!" << std::endl;
     // check for royal flush
     // check for straight flush
     // check for four of a kind
