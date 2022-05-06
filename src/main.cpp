@@ -9,24 +9,30 @@
 int main(int argc, char** argv)
 {
   std::srand(std::time(0));
-  std::atomic<int> won(0);
-  auto run = []() -> int {
+  auto run = [](int thread_iters) -> int {
     game g(2);
     int res = 0;
-    for (int i = 0 ; i < 100000 ; ++ i)
+    for (int i = 0 ; i < thread_iters ; ++ i)
     {
       res += g.simulate_hand(
-        card(_A, SPADES),
-        card(_A, HEARTS)
+        card(_2, SPADES),
+        card(_3, HEARTS)
       );
     }
     return res;
   };
-  std::future<int> f1 = std::async(run);
-  std::future<int> f2 = std::async(run);
-  std::future<int> f3 = std::async(run);
-  std::future<int> f4 = std::async(run);
-  std::cout << "won: " << (100.*(f1.get() + f2.get() + f3.get() + f4.get()) / 400000.) << "%" << std::endl;
+  std::atomic<int> won(0);
+  int total_won(0);
+  int total_played(0);
+  const int total_threads = 1;
+  const int thread_iters = 10;
+  for (int th = 0 ; th < total_threads ; ++ th)
+  {
+    std::future<int> f = std::async(run, thread_iters);
+    total_won += f.get();
+    total_played += thread_iters;
+  }
+  std::cout << "won: " << (100.*total_won / total_played) << "%" << std::endl;
 
   /* test hand
   hand h(

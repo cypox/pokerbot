@@ -43,7 +43,7 @@ public:
     _t.deal_turn(_d.draw());
     _t.deal_river(_d.draw());
 
-    //_t.show_common();
+    _t.show_common();
 
     return !_t.get_winner();
   }
