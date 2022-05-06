@@ -7,11 +7,16 @@
 int main(int argc, char** argv)
 {
   std::srand(std::time(0));
-  game g(8);
-  g.simulate_hand(
-    card(_A, SPADES),
-    card(_K, SPADES)
-  );
+  game g(2);
+  int won = 0;
+  for (int i = 0 ; i < 100000 ; ++ i)
+  {
+    won += g.simulate_hand(
+      card(_A, SPADES),
+      card(_A, HEARTS)
+    );
+  }
+  std::cout << "won: " << won << "/" << 100000 << std::endl;
 
   /* test hand
   hand h(
