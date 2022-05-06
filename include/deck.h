@@ -20,7 +20,7 @@ public:
     {
       for (int f = 2 ; f <= 14 ; ++ f)
       {
-        _d.emplace_back(s, f);
+        _d.emplace_back(f, s);
       }
     }
   }
