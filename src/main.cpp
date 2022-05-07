@@ -16,8 +16,8 @@ int main(int argc, char** argv)
     for (int i = 0 ; i < thread_iters ; ++ i)
     {
       std::vector<int> winner = g.simulate_situation({
-        { card(_A, DIAMONDS), card(_K, CLUBS) },
-        { card(_A, SPADES), card(_A, HEARTS) }
+        { card("Ad"), card("Kc") },
+        { card("As"), card("Ah") }
       });
       if (winner.size() == 1) res[winner[0]] ++;
       else res[2] ++;

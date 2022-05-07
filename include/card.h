@@ -52,6 +52,22 @@ public:
 
   card(char f, char s) : _face((face_t)f), _suit((suit_t)s) {}
 
+  card (const char* s) {
+    if (s[0] >= '2' && s[0] <= '9') _face = (face_t) (s[0] - '0');
+    else if (s[0] == 'A' || s[0] == 'a') _face = _A;
+    else if (s[0] == 'K' || s[0] == 'k') _face = _K;
+    else if (s[0] == 'Q' || s[0] == 'q') _face = _Q;
+    else if (s[0] == 'J' || s[0] == 'j') _face = _J;
+    if (s[1] == 'S' || s[1] == 's') _suit = SPADES;
+    else if (s[1] == 'H' || s[1] == 'h') _suit = HEARTS;
+    else if (s[1] == 'D' || s[1] == 'd') _suit = DIAMONDS;
+    else if (s[1] == 'C' || s[1] == 'c') _suit = CLUBS;
+  }
+
+  card (const std::string s) {
+    card(s.c_str());
+  }
+
   bool operator!=(const card& other)
   {
     return other._face != _face || other._suit != _suit;
