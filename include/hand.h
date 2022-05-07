@@ -10,6 +10,10 @@ public:
     _top_five[2] = _2;
     _top_five[3] = _3;
     _top_five[4] = _4;
+    // sort the hand by face
+    std::sort(_top_five, _top_five+5, [](const card& l, const card& r){
+      return l._face > r._face;
+    });
   }
 
   hand(card cards[7])
@@ -54,6 +58,10 @@ public:
       }
     }
     std::copy(best_five, best_five+5, _top_five);
+    // sort the hand by face
+    std::sort(_top_five, _top_five+5, [](const card& l, const card& r){
+      return l._face > r._face;
+    });
   }
 
   short rank_hand() const
@@ -100,7 +108,25 @@ public:
 
   bool operator>(const hand& rhs)
   {
-    return ranks[rank_hand()] > ranks[rhs.rank_hand()];
+    if (ranks[rank_hand()] == ranks[rhs.rank_hand()])
+    {
+      int i = 0;
+      while (i < 5 && _top_five[i]._face == rhs._top_five[i]._face) i++;
+      if (i == 5) return false;
+      else return _top_five[i]._face > rhs._top_five[i]._face;
+    }
+    else return ranks[rank_hand()] > ranks[rhs.rank_hand()];
+  }
+
+  bool operator==(const hand& rhs)
+  {
+    if (ranks[rank_hand()] == ranks[rhs.rank_hand()])
+    {
+      int i = 0;
+      while (i < 5 && _top_five[i]._face == rhs._top_five[i]._face) i++;
+      if (i == 5) return true;
+    }
+    return false;
   }
 
   hand operator=(const hand &other)

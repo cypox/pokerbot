@@ -47,9 +47,9 @@ public:
               << std::endl;
   }
 
-  int get_winner()
+  std::vector<int> get_winner()
   {
-    int best_player = 0;
+    std::vector<int> best_players{0};
     card cards[7] = {_flop[0], _flop[1], _flop[2], _turn, _river, _players[0][0], _players[0][1]};
     hand best(cards);
     for (int i = 1 ; i < _n ; ++ i)
@@ -59,13 +59,18 @@ public:
       hand current(cards);
       if (current > best)
       {
-        best_player = i;
+        best_players.clear();
+        best_players.push_back(i);
         best = current;
       }
+      else if (current == best)
+      {
+        best_players.push_back(i);
+      }
     }
-    _players[best_player].render();
+    for (auto& best_player : best_players) _players[best_player].render();
     std::cout << best << std::endl;
-    return best_player;
+    return best_players;
   }
 
 private:

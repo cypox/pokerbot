@@ -10,7 +10,7 @@ public:
   {
   }
 
-  int run()
+  std::vector<int> run()
   {
     _d.shuffle();
     for (int i = 0 ; i < _n ; ++ i)
@@ -45,10 +45,13 @@ public:
 
     _t.show_common();
 
-    return !_t.get_winner();
+    std::vector<int> w = _t.get_winner();
+    for (auto& p : w) if (p == 0) return true;
+
+    return false;
   }
 
-  int simulate_situation(const std::vector<std::pair<card, card>>& cards)
+  std::vector<int> simulate_situation(const std::vector<std::pair<card, card>>& cards)
   {
     _d.init();
     _d.shuffle();
