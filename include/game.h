@@ -48,6 +48,31 @@ public:
     return !_t.get_winner();
   }
 
+  int simulate_situation(const std::vector<std::pair<card, card>>& cards)
+  {
+    _d.init();
+    _d.shuffle();
+    int i = 0;
+    for (auto p : cards)
+    {
+      _d.discard(p.first);
+      _d.discard(p.second);
+      _t.deal_player(i++, p.first, p.second);
+    }
+    for (int i = cards.size() ; i < _n ; ++ i)
+    {
+      _t.deal_player(i, _d.draw(), _d.draw());
+    }
+
+    _t.deal_flop(_d.draw(), _d.draw(), _d.draw());
+    _t.deal_turn(_d.draw());
+    _t.deal_river(_d.draw());
+
+    _t.show_common();
+
+    return _t.get_winner();
+  }
+
 private:
   int _n;
   table _t;
