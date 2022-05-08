@@ -6,7 +6,7 @@
 #include "../include/game.h"
 
 
-const int total_threads = 4;
+const int total_threads = 1;
 const int thread_iters = 2500;
 
 int main(int argc, char** argv)
@@ -19,9 +19,9 @@ int main(int argc, char** argv)
     game g(total_players);
     std::vector<int> res(total_players, 0);
     std::vector<std::pair<card, card>> player_cards;
-    for (int i = 0 ; i < total_players ; i += 2)
+    for (int i = 0 ; i < total_players ; ++ i)
     {
-      player_cards.emplace_back(argv[i+1], argv[i+2]);
+      player_cards.emplace_back(argv[i*2+1], argv[i*2+2]);
     }
 
     for (int i = 0 ; i < thread_iters ; ++ i)
