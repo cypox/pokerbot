@@ -58,6 +58,7 @@ public:
     else if (s[0] == 'K' || s[0] == 'k') _face = _K;
     else if (s[0] == 'Q' || s[0] == 'q') _face = _Q;
     else if (s[0] == 'J' || s[0] == 'j') _face = _J;
+    else if (s[0] == 'T' || s[0] == 't') _face = _T;
     if (s[1] == 'S' || s[1] == 's') _suit = SPADES;
     else if (s[1] == 'H' || s[1] == 'h') _suit = HEARTS;
     else if (s[1] == 'D' || s[1] == 'd') _suit = DIAMONDS;
