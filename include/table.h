@@ -17,7 +17,9 @@ public:
   void deal_player(int idx, card first, card second)
   {
     _players[idx].set_cards(first, second);
+#ifdef DEBUG
     _players[idx].render();
+#endif
   }
 
   void deal_flop(card first, card second, card third)
@@ -68,8 +70,10 @@ public:
         best_players.push_back(i);
       }
     }
+#ifdef DEBUG
     for (auto& best_player : best_players) _players[best_player].render();
     std::cout << best << std::endl;
+#endif
     return best_players;
   }
 

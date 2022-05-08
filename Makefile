@@ -1,2 +1,7 @@
+CC = g++
+CFLAGS = -std=c++17
+LIBS = -lpthread
+
+
 all: src/main.cpp
-	g++ -std=c++17 src/main.cpp -o main -lpthread
+	$(CC) $(CFLAGS) src/main.cpp -o main $(LIBS)

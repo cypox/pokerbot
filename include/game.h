@@ -22,7 +22,9 @@ public:
     _t.deal_turn(_d.draw());
     _t.deal_river(_d.draw());
 
-    //_t.show_common();
+#ifdef DEBUG
+    _t.show_common();
+#endif
 
     return _t.get_winner();
   }
@@ -43,7 +45,9 @@ public:
     _t.deal_turn(_d.draw());
     _t.deal_river(_d.draw());
 
+#ifdef DEBUG
     _t.show_common();
+#endif
 
     std::vector<int> w = _t.get_winner();
     for (auto& p : w) if (p == 0) return true;
@@ -71,7 +75,9 @@ public:
     _t.deal_turn(_d.draw());
     _t.deal_river(_d.draw());
 
+#ifdef DEBUG
     _t.show_common();
+#endif
 
     return _t.get_winner();
   }
